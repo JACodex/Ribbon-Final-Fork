@@ -4,7 +4,7 @@ const Client = require('../models/client')
 const auth = async (req, res, next)=>{
     try {
         const token = req.header('Authorization').replace('Bearer ', '');
-        const decoded = jwt.verify(token, 'CogitoErgoSum')
+        const decoded = jwt.verify(token, 'SECRET HERE')
         const client = await Client.findOne({ _id: decoded._id, 'tokens.token': token})
         if(!client){
             throw new Error()
